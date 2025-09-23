@@ -85,6 +85,48 @@
 
         </com.google.android.material.chip.ChipGroup>
 
+
+        <TextView
+            android:id="@+id/tvRestaurantNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jakarta_semibold"
+            app:layout_constraintStart_toStartOf="@id/tvRestaurantStarRating"
+            app:layout_constraintEnd_toEndOf="@id/tvRestaurantStarRating"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantName"
+            android:layout_marginTop="19dp"
+            android:textSize="24sp"
+            tools:text="4.0"/>
+
+        <RatingBar
+            android:id="@+id/tvRestaurantStarRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tvRestaurantName"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantNote"
+            android:stepSize="1"
+            android:numStars="5"
+            android:isIndicator="true"
+            android:rating="4"
+            android:progressTint="@color/gold"/>
+
+        <TextView
+            android:id="@+id/tvRestaurantNbrAvis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tvRestaurantStarRating"
+            app:layout_constraintEnd_toEndOf="@id/tvRestaurantStarRating"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantStarRating"
+            android:fontFamily="@font/jakarta_regular"
+            android:textSize="12sp"
+            tools:text="(257)"/>
+
+
+
+
+
+
+
         <View
             android:id="@+id/separator"
             android:layout_width="0dp"
@@ -96,7 +138,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvRestaurantHours"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantNbrAvis" />
 
         <ImageView
             android:id="@+id/icon_hours"
