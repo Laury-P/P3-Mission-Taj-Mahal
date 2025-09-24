@@ -3,15 +3,20 @@ package com.openclassrooms.tajmahal.ui.restaurant;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
+import com.openclassrooms.tajmahal.domain.model.RestaurantRating;
+import com.openclassrooms.tajmahal.domain.model.Review;
 
 import javax.inject.Inject;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
@@ -26,6 +31,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class DetailsViewModel extends ViewModel {
 
     private final RestaurantRepository restaurantRepository;
+
+    private MutableLiveData<RestaurantRating> restaurantRating = new MutableLiveData<>();
+
 
     /**
      * Constructor that Hilt will use to create an instance of MainViewModel.
@@ -45,6 +53,49 @@ public class DetailsViewModel extends ViewModel {
     public LiveData<Restaurant> getTajMahalRestaurant() {
         return restaurantRepository.getRestaurant();
     }
+
+    /**
+     * Fetches the rating details of the Taj Mahal restaurant.
+     *
+     *
+     * @return LiveData object containing the rating details of the Taj Mahal restaurant.
+     */
+    public LiveData<RestaurantRating> getTajMahalRating() {
+        return restaurantRating;
+    }
+
+    /**
+     * Fetches the reviews for the Taj Mahal restaurant and calculates the average rating,
+     * the number of review and the rating details.
+     */
+    public void updateRestaurantRating() {
+        restaurantRepository.getReviews().observeForever(reviews -> {
+            if (reviews != null && !reviews.isEmpty()) {
+                int sumRating = 0;
+                int numberOfReviews = reviews.size();
+                Map<Integer, Integer> ratingDetails = new HashMap<>();
+
+                // initialisation de la Map
+                for (int i = 1; i <= 5; i++) {
+                    ratingDetails.put(i, 0);
+                }
+
+                for (Review review : reviews) {
+                    int rate = review.getRate();
+                    sumRating += rate;
+                    ratingDetails.put(rate, ratingDetails.get(rate) + 1);
+                }
+
+                float averageRating = sumRating / numberOfReviews;
+
+                restaurantRating.setValue(new RestaurantRating(averageRating, numberOfReviews, ratingDetails));
+            } else {
+                // Handle the case when there are no reviews
+                restaurantRating.setValue(new RestaurantRating(0f,0, new HashMap<>()));
+            }
+        });
+    }
+
 
     /**
      * Retrieves the current day of the week in French.
