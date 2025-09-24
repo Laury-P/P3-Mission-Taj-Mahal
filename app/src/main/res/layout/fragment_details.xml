@@ -130,7 +130,7 @@
             android:id="@+id/restaurantAvis5starBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/RestaurantAvis4starBar"
+            app:layout_constraintBottom_toTopOf="@id/restaurantAvis4starBar"
             app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
             style="?android:attr/progressBarStyleHorizontal"
             android:max="100"
@@ -140,7 +140,7 @@
             app:layout_constraintWidth_percent="0.55" />
 
         <ProgressBar
-            android:id="@+id/RestaurantAvis4starBar"
+            android:id="@+id/restaurantAvis4starBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/restaurantAvis3starBar"
