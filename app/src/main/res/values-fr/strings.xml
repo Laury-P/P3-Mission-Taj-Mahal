@@ -22,6 +22,8 @@
     <string name="icone_website">Icone website</string>
     <string name="phone_icon">Phone icon</string>
     <string name="button_leave_review">Laisser un avis</string>"
+    <string name="button_back">Retour</string>
+    <string name="button_submit">Valider</string>
 
 
 </resources>

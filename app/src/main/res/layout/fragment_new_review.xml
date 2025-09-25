@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Go back to the restaurant details"
+            android:focusable="true"
+            android:src="@drawable/baseline_arrow_backward_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tvRestaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Taj Mahal"
+            app:layout_constraintTop_toTopOf="@id/buttonBack"
+            app:layout_constraintBottom_toBottomOf="@id/buttonBack"
+            app:layout_constraintStart_toEndOf="@id/buttonBack"
+            android:textSize="18sp"
+            android:fontFamily="@font/jakarta_bold"
+            android:layout_marginStart="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/UserProfilPicture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@id/buttonBack"
+            app:layout_constraintTop_toBottomOf="@id/buttonBack"
+            android:src="@drawable/user_profil_picture"
+            android:layout_marginTop="29dp"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Manon Garcia"
+            app:layout_constraintStart_toEndOf="@id/UserProfilPicture"
+            app:layout_constraintTop_toTopOf="@id/UserProfilPicture"
+            android:textSize="12sp"
+            android:layout_marginStart="10dp"
+            />
+
+        <RatingBar
+            android:id="@+id/userRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/UserProfilPicture"
+            app:layout_constraintStart_toEndOf="@id/UserProfilPicture"
+            android:isIndicator="false"
+            android:rating="5"
+            android:stepSize="1"
+            android:progressTint="@color/gold"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonBack"
+            android:layout_marginTop="29dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/buttonSubmitReview"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_submit"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:chipBackgroundColor="#CF2F2F"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="#CF2F2F"
+                app:textEndPadding="0dp"
+                app:textStartPadding="0dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <EditText
+            android:id="@+id/userComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/UserProfilPicture"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/jakarta_regular"
+            android:inputType="text"
+            android:hint="Partagez ici les détails de votre expérience"
+            android:padding="10dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
