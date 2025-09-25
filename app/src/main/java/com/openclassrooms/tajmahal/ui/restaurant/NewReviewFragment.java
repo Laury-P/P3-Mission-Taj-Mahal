@@ -8,12 +8,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.FragmentNewReviewBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
@@ -29,8 +32,9 @@ import java.util.List;
 public class NewReviewFragment extends Fragment {
 
     private NewReviewViewModel newReviewViewModel;
-
     private FragmentNewReviewBinding binding;
+    private ReviewAdaptateur reviewAdapter;
+
 
     /**
      * This method is called when the fragment is first created.
@@ -75,7 +79,8 @@ public class NewReviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupUI(); // Sets up user interface components.
         setupViewModel(); // Prepares the ViewModel for the fragment.
-        newReviewViewModel.getReviews().observe(requireActivity(), this::updateUIWithReview);
+        setupRecyclerView(view); // Sets up the RecyclerView for displaying reviews.
+
     }
 
     /**
@@ -96,17 +101,24 @@ public class NewReviewFragment extends Fragment {
         newReviewViewModel = new ViewModelProvider(this).get(NewReviewViewModel.class);
     }
 
-    /**
-     * Display and update the UI components with the reviews and add the last review to the top of the list
-     *
-     * @param reviews the list of reviews
-     */
-    private void updateUIWithReview(List<Review> reviews){
+    private void setupRecyclerView(@NonNull View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        reviewAdapter = new ReviewAdaptateur();
+        recyclerView.setAdapter(reviewAdapter);
+
+        newReviewViewModel.getReviews().observe(getViewLifecycleOwner(), reviews -> {
+                reviewAdapter.submitList(reviews);
+        });
+
 
 
     }
 
-    //TODO: récupération du commentaire
+
+
+    //TODO: récupération du nouvel avis
 
     public static NewReviewFragment newInstance() {
         return new NewReviewFragment();
