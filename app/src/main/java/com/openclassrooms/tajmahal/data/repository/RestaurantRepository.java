@@ -1,5 +1,7 @@
 package com.openclassrooms.tajmahal.data.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -64,6 +66,7 @@ public class RestaurantRepository {
     public LiveData<List<Review>> getReviews() {
         MutableLiveData<List<Review>> reviews = new MutableLiveData<>();
         reviews.setValue(restaurantApi.getReviews());
+        Log.d("Repository", "Reviews fetched:" + restaurantApi.getReviews().size());
         return reviews;
 
     }

@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
 /**
  * NewReviewViewModel is responsible for preparing and managing the data for the
  * {@link NewReviewFragment}. It communicates with the {@link RestaurantRepository} to fetch
@@ -18,9 +20,12 @@ import javax.inject.Inject;
  *
  * The ViewModel is integrated with Hilt for dependency injection.
  */
+@HiltViewModel
 public class NewReviewViewModel extends ViewModel {
 
     private final RestaurantRepository restaurantRepository;
+
+
 
     /**
      * Constructor that Hilt will use to create an instance of NewReviewViewModel
@@ -32,7 +37,7 @@ public class NewReviewViewModel extends ViewModel {
         this.restaurantRepository = restaurantRepository;
     }
 
-   // TODO: Implement LiveData for name of restaurant if its not possible to pass it during the root
+
 
     public LiveData<List<Review>> getReviews() {
         return restaurantRepository.getReviews();

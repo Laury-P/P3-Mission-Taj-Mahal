@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +23,15 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
  * NewReviewFragment is te view where client can leave review and see
  * other clients review.
  * This class uses {@link NewReviewViewModel} to interact with data sources and manage UI-related data
  * and {@link FragmentNewReviewBinding} for data binding to its layout.
  */
-
+@AndroidEntryPoint
 public class NewReviewFragment extends Fragment {
 
     private NewReviewViewModel newReviewViewModel;
@@ -78,9 +81,8 @@ public class NewReviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupUI(); // Sets up user interface components.
+        setupRecyclerView();// Sets up the RecyclerView for displaying reviews.
         setupViewModel(); // Prepares the ViewModel for the fragment.
-        setupRecyclerView(view); // Sets up the RecyclerView for displaying reviews.
-
     }
 
     /**
@@ -99,18 +101,19 @@ public class NewReviewFragment extends Fragment {
      */
     private void setupViewModel() {
         newReviewViewModel = new ViewModelProvider(this).get(NewReviewViewModel.class);
+        newReviewViewModel.getReviews().observe(requireActivity(), reviews -> {
+            Log.d("Fragment","observer called with:" + reviews.toString());
+            reviewAdapter.submitList(reviews);
+        });
     }
 
-    private void setupRecyclerView(@NonNull View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-
+    private void setupRecyclerView() {
         reviewAdapter = new ReviewAdaptateur();
-        recyclerView.setAdapter(reviewAdapter);
+        binding.recyclerViewReview.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerViewReview.setAdapter(reviewAdapter);
 
-        newReviewViewModel.getReviews().observe(getViewLifecycleOwner(), reviews -> {
-                reviewAdapter.submitList(reviews);
-        });
+
+
 
 
 

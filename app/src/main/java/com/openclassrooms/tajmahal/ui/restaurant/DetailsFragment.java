@@ -76,6 +76,7 @@ public class DetailsFragment extends Fragment {
                 NewReviewFragment reviewFragment = NewReviewFragment.newInstance();
                 fragmentTransaction.replace(R.id.container, reviewFragment);
                 fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 

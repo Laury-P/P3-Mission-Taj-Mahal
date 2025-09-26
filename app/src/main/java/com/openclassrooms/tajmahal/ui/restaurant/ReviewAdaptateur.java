@@ -6,7 +6,6 @@ package com.openclassrooms.tajmahal.ui.restaurant;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -23,7 +22,7 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 /**
  * Adapter for the list of reviews
  */
-public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ReviewViewHolder> {
+public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewHolder> {
 
 
     /**
@@ -42,9 +41,9 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.Revie
      */
     @NonNull
     @Override
-    public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_review, parent, false);
-        return new ReviewViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_review, parent, false);
+        return new ViewHolder(itemView);
     }
 
     /**
@@ -55,7 +54,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.Revie
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position));
     }
 
@@ -63,7 +62,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.Revie
      * Bind the item_review to the correct data
      *
      */
-    static class ReviewViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         //private final ImageView profilPicture;
         private final TextView name, comment;
         private final RatingBar rate;
@@ -73,7 +72,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.Revie
          *
          * @param itemView The view of the item
          */
-        ReviewViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView){
             super(itemView);
             //profilPicture = itemView.findViewById(R.id.profilPicture);
             name = itemView.findViewById(R.id.tvName);
@@ -86,7 +85,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.Revie
          *
          * @param review The review to bind
          */
-        void bind(Review review){
+        public void bind(Review review){
             //profilPicture.setImageResource(review.getPicture());
             name.setText(review.getUsername());
             comment.setText(review.getComment());
