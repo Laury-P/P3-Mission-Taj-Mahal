@@ -116,7 +116,9 @@
             android:layout_marginTop="20dp"
             android:textSize="12sp"
             android:fontFamily="@font/jakarta_regular"
-            android:inputType="text"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            android:maxLength="300"
             android:hint="Partagez ici les détails de votre expérience"
             android:padding="10dp"/>
 

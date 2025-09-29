@@ -9,6 +9,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.bumptech.glide.Glide;
+import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
@@ -69,9 +70,23 @@ public class NewReviewViewModel extends ViewModel {
         return restaurantRepository.getUser();
     }
 
-    public void addNewReview(String username, String profilPicture, String comment, int rating){
-        Review review = new Review(username,profilPicture,comment,rating);
-        restaurantRepository.addReview(review);
+    /**
+     * Adds a new review to the restaurantRepository.
+     * @param review
+     */
+    public boolean addNewReview(Review review){
+        boolean success;
+        if (review.getComment().isEmpty()) {
+            success = false;
+        } else {
+            if (review.getRate() <= 5 && review.getRate() >0){
+                restaurantRepository.addReview(review);
+                success = true;
+            }else{
+                throw new IllegalArgumentException("Rating must be between 1 and 5");
+            }
+        }
+        return success;
     }
 
 }

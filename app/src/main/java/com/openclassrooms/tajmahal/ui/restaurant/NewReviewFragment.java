@@ -111,15 +111,19 @@ public class NewReviewFragment extends Fragment {
         String profilPicture = newReviewViewModel.getUser().getProfilPicture();
         String comment = binding.userComment.getText().toString().trim();//trim pour supprimer les espaces inutiles et eviter un commentaire " "
         int rating = (int) binding.userRating.getRating();
-        if (comment.isEmpty()) {
-            binding.userComment.setError(getString(R.string.error_empty_comment));
-        } else {
-            newReviewViewModel.addNewReview(name, profilPicture, comment, rating);
+        Review review = new Review(name, profilPicture, comment, rating);
+
+
+        if(newReviewViewModel.addNewReview(review)){
             binding.userComment.setText("");
             binding.userRating.setRating(5);
             reviewAdapter.notifyDataSetChanged();
+        } else if (review.getComment().isEmpty()) {
+            binding.userComment.setError(getString(R.string.error_empty_comment));
         }
+
     }
+
 
     /**
      * Sets up the UI-specific properties, such as system UI flags and status bar color.
