@@ -63,4 +63,6 @@ public interface RestaurantApi {
      * @return The {@link User} object containing all the details of the user.
      */
     User getUser();
+
+    void addReview(Review review);
 }

@@ -79,4 +79,9 @@ public class RestaurantRepository {
     public User getUser() {
         return restaurantApi.getUser();
     }
+
+
+    public void addReview(Review review) {
+        restaurantApi.addReview(review);
+    }
 }

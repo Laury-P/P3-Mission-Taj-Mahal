@@ -41,6 +41,7 @@ public class NewReviewFragment extends Fragment {
     private ReviewAdaptateur reviewAdapter;
 
 
+
     /**
      * This method is called when the fragment is first created.
      * It's used to perform one-time initialization.
@@ -85,7 +86,29 @@ public class NewReviewFragment extends Fragment {
         setupUI(); // Sets up user interface components.
         setupViewModel(); // Prepares the ViewModel for the fragment.
         setupRecyclerView();// Sets up the RecyclerView for displaying reviews.
+        binding.buttonSubmitReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitReview();
+            }
+        });
 
+    }
+
+    /**
+     * This methode fetch the necessary information to create a new review
+     * and update the UI with the new list of reviews.
+     *
+     */
+    private void submitReview() {
+        String name = newReviewViewModel.getUser().getName();
+        String profilPicture = newReviewViewModel.getUser().getProfilPicture();
+        String comment = binding.userComment.getText().toString();
+        int rating = (int) binding.userRating.getRating();
+        newReviewViewModel.addNewReview(name, profilPicture, comment, rating);
+        binding.userComment.setText("");
+        binding.userRating.setRating(5);
+        reviewAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -110,12 +133,18 @@ public class NewReviewFragment extends Fragment {
         setupUserProfil();
     }
 
+    /**
+     * Sets up the user's profile picture and name in the UI.
+     */
     private void setupUserProfil() {
         User user = newReviewViewModel.getUser();
         binding.tvUserName.setText(user.getName());
         loadProfilPicture(requireContext(),user.getProfilPicture(),binding.userProfilPicture);
     }
 
+    /**
+     * Sets up the RecyclerView for displaying reviews.
+     */
     private void setupRecyclerView() {
         reviewAdapter = new ReviewAdaptateur();
         binding.recyclerViewReview.setLayoutManager(new LinearLayoutManager(getContext()));

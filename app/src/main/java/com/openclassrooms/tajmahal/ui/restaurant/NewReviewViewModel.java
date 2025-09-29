@@ -69,4 +69,9 @@ public class NewReviewViewModel extends ViewModel {
         return restaurantRepository.getUser();
     }
 
+    public void addNewReview(String username, String profilPicture, String comment, int rating){
+        Review review = new Review(username,profilPicture,comment,rating);
+        restaurantRepository.addReview(review);
+    }
+
 }
