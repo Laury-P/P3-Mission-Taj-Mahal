@@ -3,9 +3,12 @@ package com.openclassrooms.tajmahal.ui.restaurant;
 
 
 
+import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilPicture;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -63,7 +66,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
      *
      */
     static class ViewHolder extends RecyclerView.ViewHolder {
-        //private final ImageView profilPicture;
+        private final ImageView profilPicture;
         private final TextView name, comment;
         private final RatingBar rate;
 
@@ -74,7 +77,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
          */
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            //profilPicture = itemView.findViewById(R.id.profilPicture);
+            profilPicture = itemView.findViewById(R.id.profilPicture);
             name = itemView.findViewById(R.id.tvName);
             comment = itemView.findViewById(R.id.tvComment);
             rate = itemView.findViewById(R.id.Rating);
@@ -86,7 +89,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
          * @param review The review to bind
          */
         public void bind(Review review){
-            //profilPicture.setImageResource(review.getPicture());
+            loadProfilPicture(itemView.getContext(), review.getPicture(), profilPicture);
             name.setText(review.getUsername());
             comment.setText(review.getComment());
             rate.setRating(review.getRate());

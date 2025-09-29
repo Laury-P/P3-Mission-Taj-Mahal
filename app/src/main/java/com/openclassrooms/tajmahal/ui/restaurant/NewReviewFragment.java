@@ -1,5 +1,7 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
+import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilPicture;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
@@ -18,6 +20,7 @@ import android.view.Window;
 
 import com.openclassrooms.tajmahal.databinding.FragmentNewReviewBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
+import com.openclassrooms.tajmahal.domain.model.User;
 
 import java.util.List;
 
@@ -101,6 +104,16 @@ public class NewReviewFragment extends Fragment {
      */
     private void setupViewModel() {
         newReviewViewModel = new ViewModelProvider(this).get(NewReviewViewModel.class);
+        newReviewViewModel.getRestaurantName().observe(getViewLifecycleOwner(), restaurantName -> {
+            binding.tvRestaurantName.setText(restaurantName);
+        });
+        setupUserProfil();
+    }
+
+    private void setupUserProfil() {
+        User user = newReviewViewModel.getUser();
+        binding.tvUserName.setText(user.getName());
+        loadProfilPicture(requireContext(),user.getProfilPicture(),binding.userProfilPicture);
     }
 
     private void setupRecyclerView() {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
+import com.openclassrooms.tajmahal.domain.model.User;
 
 import java.util.List;
 
@@ -50,4 +51,16 @@ public interface RestaurantApi {
      * @return The {@link Restaurant} object containing all the details of the restaurant.
      */
     List<Review> getReviews();
+
+
+    /**
+     * Retrieves the user of the application.
+     * <p>
+     * This methode will usually be connected to a network call or database query in its
+     * implementing class, fetching the required user information.
+     * </p>
+     *
+     * @return The {@link User} object containing all the details of the user.
+     */
+    User getUser();
 }

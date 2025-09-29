@@ -8,7 +8,7 @@ import java.util.Objects;
  * This class encapsulates all the details of a review, including the username of the reviewer,
  * their profile picture, the comment they left, and the rating they gave.
  */
-public class Review {
+public class  Review {
 
     /** The name of the user who left the review. */
     private String username;

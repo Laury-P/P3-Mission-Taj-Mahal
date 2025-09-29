@@ -37,7 +37,7 @@
             />
 
         <ImageView
-            android:id="@+id/UserProfilPicture"
+            android:id="@+id/userProfilPicture"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="@id/buttonBack"
@@ -53,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Manon Garcia"
-            app:layout_constraintStart_toEndOf="@id/UserProfilPicture"
-            app:layout_constraintTop_toTopOf="@id/UserProfilPicture"
+            app:layout_constraintStart_toEndOf="@id/userProfilPicture"
+            app:layout_constraintTop_toTopOf="@id/userProfilPicture"
             android:textSize="12sp"
             android:layout_marginStart="10dp"
             />
@@ -64,8 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/ratingBarStyleSmall"
-            app:layout_constraintBottom_toBottomOf="@id/UserProfilPicture"
-            app:layout_constraintStart_toEndOf="@id/UserProfilPicture"
+            app:layout_constraintBottom_toBottomOf="@id/userProfilPicture"
+            app:layout_constraintStart_toEndOf="@id/userProfilPicture"
             android:isIndicator="false"
             android:layout_marginStart="10dp"
             android:rating="5"
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
-            app:layout_constraintTop_toBottomOf="@id/UserProfilPicture"
+            app:layout_constraintTop_toBottomOf="@id/userProfilPicture"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"

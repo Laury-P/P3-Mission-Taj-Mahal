@@ -2,6 +2,7 @@ package com.openclassrooms.tajmahal.data.service;
 
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
+import com.openclassrooms.tajmahal.domain.model.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,10 +60,9 @@ public class RestaurantFakeApi implements RestaurantApi {
 
     /**
      * Retrieves a hard-coded {@link Review} object for the "Taj Mahal".
-     * <p>
+     *
      * This method simulates an API call by immediately returning a Review list
      * with pre-defined attributes.
-     * </p>
      *
      * @return The hard-coded list {@link Review} for the "Taj Mahal".
      */
@@ -70,5 +70,12 @@ public class RestaurantFakeApi implements RestaurantApi {
     public List<Review> getReviews() {
         return reviews;
     }
+
+
+    @Override
+    public User getUser() {
+        return new User ("Manon Garcia", "https://xsgames.co/randomusers/assets/avatars/female/1.jpg","Fake123");
+    }
+
 
 }
