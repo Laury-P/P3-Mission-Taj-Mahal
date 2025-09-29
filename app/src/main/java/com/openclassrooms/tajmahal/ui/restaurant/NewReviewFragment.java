@@ -9,19 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.openclassrooms.tajmahal.R;
+
 import com.openclassrooms.tajmahal.databinding.FragmentNewReviewBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
 import java.util.List;
+
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -81,8 +80,9 @@ public class NewReviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupUI(); // Sets up user interface components.
-        setupRecyclerView();// Sets up the RecyclerView for displaying reviews.
         setupViewModel(); // Prepares the ViewModel for the fragment.
+        setupRecyclerView();// Sets up the RecyclerView for displaying reviews.
+
     }
 
     /**
@@ -101,22 +101,15 @@ public class NewReviewFragment extends Fragment {
      */
     private void setupViewModel() {
         newReviewViewModel = new ViewModelProvider(this).get(NewReviewViewModel.class);
-        newReviewViewModel.getReviews().observe(requireActivity(), reviews -> {
-            Log.d("Fragment","observer called with:" + reviews.toString());
-            reviewAdapter.submitList(reviews);
-        });
     }
 
     private void setupRecyclerView() {
         reviewAdapter = new ReviewAdaptateur();
         binding.recyclerViewReview.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewReview.setAdapter(reviewAdapter);
-
-
-
-
-
-
+        newReviewViewModel.getReviews().observe(getViewLifecycleOwner(), reviews -> {
+            reviewAdapter.submitList(reviews);
+        });
     }
 
 
