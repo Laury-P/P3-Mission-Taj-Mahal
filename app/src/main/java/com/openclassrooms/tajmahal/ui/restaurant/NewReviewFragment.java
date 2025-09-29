@@ -93,7 +93,12 @@ public class NewReviewFragment extends Fragment {
                 submitReview();
             }
         });
-
+        binding.topBand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().onBackPressed();
+            }
+        });
     }
 
     /**
