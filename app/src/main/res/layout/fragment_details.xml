@@ -109,7 +109,7 @@
             android:rating="4"
             style="?android:attr/ratingBarStyleSmall"
             android:stepSize="1"
-
+            android:layout_marginVertical="10dp"
             app:layout_constraintStart_toStartOf="@id/tvRestaurantName"
             app:layout_constraintTop_toBottomOf="@id/tvRestaurantNote" />
 
@@ -123,73 +123,76 @@
             android:fontFamily="@font/jakarta_regular"
             android:textSize="12sp"
             android:textColor="@color/dark_grey"
-            tools:text="(257)"/>
+            tools:text="(257)"
+            android:layout_marginTop="10dp"/>
 
-        <ProgressBar
-            android:id="@+id/restaurantAvis5starBar"
+        <LinearLayout
+            android:id="@+id/restaurantAvisRepartition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/restaurantAvis4starBar"
-            app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:max="100"
-            android:progress="20"
-            android:progressTint="@color/gold"
-            android:progressBackgroundTint="@color/light_grey"
-            app:layout_constraintWidth_percent="0.55" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@id/tvRestaurantNote"
+            app:layout_constraintBottom_toBottomOf="@id/restaurantStarRating"
+            app:layout_constraintStart_toEndOf="@id/restaurantStarRating"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <ProgressBar
-            android:id="@+id/restaurantAvis4starBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/restaurantAvis3starBar"
-            app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:max="100"
-            android:progress="20"
-            android:progressTint="@color/gold"
-            android:progressBackgroundTint="@color/light_grey"
-            app:layout_constraintWidth_percent="0.55" />
+            <ProgressBar
+                android:id="@+id/restaurantAvis5starBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="20"
+                android:progressDrawable="@drawable/progress_bar"
+                android:layout_marginVertical="3dp"
 
-        <ProgressBar
-            android:id="@+id/restaurantAvis3starBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/restaurantAvis2starBar"
-            app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:max="100"
-            android:progress="20"
-            android:progressTint="@color/gold"
-            android:progressBackgroundTint="@color/light_grey"
-            app:layout_constraintWidth_percent="0.55" />
+                />
 
-        <ProgressBar
-            android:id="@+id/restaurantAvis2starBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/restaurantAvis1starBar"
-            app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:max="100"
-            android:progress="20"
-            android:progressTint="@color/gold"
-            android:progressBackgroundTint="@color/light_grey"
-            app:layout_constraintWidth_percent="0.55" />
+            <ProgressBar
+                android:id="@+id/restaurantAvis4starBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="20"
+                android:progressDrawable="@drawable/progress_bar"
+                android:layout_marginVertical="3dp"/>
 
-        <ProgressBar
-            android:id="@+id/restaurantAvis1starBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/buttonLeaveReview"
-            app:layout_constraintEnd_toEndOf="@id/buttonLeaveReview"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:max="100"
-            android:progress="20"
-            android:progressTint="@color/gold"
-            android:progressBackgroundTint="@color/light_grey"
-            app:layout_constraintWidth_percent="0.55" />
-        
+            <ProgressBar
+                android:id="@+id/restaurantAvis3starBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="20"
+                android:progressDrawable="@drawable/progress_bar"
+                android:layout_marginVertical="3dp"/>
+
+            <ProgressBar
+                android:id="@+id/restaurantAvis2starBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="20"
+                android:progressDrawable="@drawable/progress_bar"
+                android:layout_marginVertical="3dp"/>
+
+            <ProgressBar
+                android:id="@+id/restaurantAvis1starBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="20"
+                android:progressDrawable="@drawable/progress_bar"
+                android:layout_marginVertical="3dp"/>
+        </LinearLayout>
+
+
+
         <TextView
             android:id="@+id/buttonLeaveReview"
             android:layout_width="wrap_content"
@@ -198,9 +201,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginEnd="20dp"
             android:textColor="@color/dark_grey"
-            android:text="@string/button_leave_review"/>
+            android:text="@string/button_leave_review"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"/>
 
         <View
             android:id="@+id/separator"

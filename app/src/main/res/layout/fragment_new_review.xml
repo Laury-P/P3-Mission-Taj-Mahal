@@ -42,8 +42,6 @@
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="@id/buttonBack"
             app:layout_constraintTop_toBottomOf="@id/buttonBack"
-
-            android:src="@drawable/user_profil_picture"
             android:layout_marginTop="29dp"
             android:scaleType="centerCrop"
             />
@@ -101,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
+            android:background="@drawable/edittext_background"
             app:layout_constraintTop_toBottomOf="@id/userProfilPicture"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginHorizontal="20dp"
