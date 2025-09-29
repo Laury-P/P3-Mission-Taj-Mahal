@@ -24,6 +24,8 @@
     <string name="button_leave_review">Laisser un avis</string>"
     <string name="button_back">Retour</string>
     <string name="button_submit">Valider</string>
+    <string name="error_empty_comment">Veuillez entrer un commentaire</string>
+
 
 
 </resources>

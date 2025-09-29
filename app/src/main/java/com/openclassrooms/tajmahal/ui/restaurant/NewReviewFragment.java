@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 
+import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.FragmentNewReviewBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 import com.openclassrooms.tajmahal.domain.model.User;
@@ -103,12 +104,16 @@ public class NewReviewFragment extends Fragment {
     private void submitReview() {
         String name = newReviewViewModel.getUser().getName();
         String profilPicture = newReviewViewModel.getUser().getProfilPicture();
-        String comment = binding.userComment.getText().toString();
+        String comment = binding.userComment.getText().toString().trim();//trim pour supprimer les espaces inutiles et eviter un commentaire " "
         int rating = (int) binding.userRating.getRating();
-        newReviewViewModel.addNewReview(name, profilPicture, comment, rating);
-        binding.userComment.setText("");
-        binding.userRating.setRating(5);
-        reviewAdapter.notifyDataSetChanged();
+        if (comment.isEmpty()) {
+            binding.userComment.setError(getString(R.string.error_empty_comment));
+        } else {
+            newReviewViewModel.addNewReview(name, profilPicture, comment, rating);
+            binding.userComment.setText("");
+            binding.userRating.setRating(5);
+            reviewAdapter.notifyDataSetChanged();
+        }
     }
 
     /**
@@ -136,7 +141,7 @@ public class NewReviewFragment extends Fragment {
     /**
      * Sets up the user's profile picture and name in the UI.
      */
-    private void setupUserProfil() {
+    private void setupUserProfil(){
         User user = newReviewViewModel.getUser();
         binding.tvUserName.setText(user.getName());
         loadProfilPicture(requireContext(),user.getProfilPicture(),binding.userProfilPicture);
@@ -154,9 +159,6 @@ public class NewReviewFragment extends Fragment {
         });
     }
 
-
-
-    //TODO: récupération du nouvel avis
 
     public static NewReviewFragment newInstance() {
         return new NewReviewFragment();
