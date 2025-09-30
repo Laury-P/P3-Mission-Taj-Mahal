@@ -91,10 +91,10 @@ public class DetailsViewModel extends ViewModel {
 
                 // calcul des pourcentages des notes par catégories
                 for (int i = 1; i <= 5; i++) {
-                    ratingDetails.put(i, ratingDetails.get(i) * 100 / numberOfReviews);
+                    ratingDetails.put(i, (ratingDetails.get(i) * 100) / numberOfReviews);
                 }
 
-                restaurantRating.setValue(new RestaurantRating(averageRating, numberOfReviews, ratingDetails));
+                restaurantRating.postValue( new RestaurantRating(averageRating, numberOfReviews, ratingDetails));
             } else {
                 // Handle the case when there are no reviews
                 restaurantRating.setValue(new RestaurantRating(0f,0, new HashMap<>()));
