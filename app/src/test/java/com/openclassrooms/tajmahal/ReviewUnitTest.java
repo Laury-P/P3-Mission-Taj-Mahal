@@ -104,7 +104,7 @@ public class ReviewUnitTest {
      * - The list of reviews should only increase once
      */
     @Test
-    public void testCloneSpamReview(){
+    public void testAddCloneReview(){
         Review spamReview = new Review("Manon Garcia", "URLProfilePicture","nul", 1);
 
         int listReviewSize = fakeApi.getReviews().size();
