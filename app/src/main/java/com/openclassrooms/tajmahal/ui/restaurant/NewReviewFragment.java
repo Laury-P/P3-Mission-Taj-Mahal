@@ -131,7 +131,7 @@ public class NewReviewFragment extends Fragment {
     private void setupUI() {
         Window window = requireActivity().getWindow();
         window.getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         );
         window.setStatusBarColor(Color.TRANSPARENT);
     }
