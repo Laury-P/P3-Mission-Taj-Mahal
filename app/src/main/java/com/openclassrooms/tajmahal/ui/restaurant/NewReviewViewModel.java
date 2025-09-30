@@ -1,17 +1,15 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
-import android.content.Context;
-import android.widget.ImageView;
+
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import com.bumptech.glide.Glide;
-import com.openclassrooms.tajmahal.R;
+
 import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
-import com.openclassrooms.tajmahal.domain.model.Restaurant;
+
 import com.openclassrooms.tajmahal.domain.model.Review;
 import com.openclassrooms.tajmahal.domain.model.User;
 
@@ -20,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
+
 
 /**
  * NewReviewViewModel is responsible for preparing and managing the data for the
@@ -76,17 +75,38 @@ public class NewReviewViewModel extends ViewModel {
      */
     public boolean addNewReview(Review review){
         boolean success;
+
         if (review.getComment().isEmpty()) { // Check if the comment is empty
             success = false;
         } else {
-            if (review.getRate() <= 5 && review.getRate() >0){ // Check if the rating is correct
-                restaurantRepository.addReview(review);
-                success = true;
+            if (review.getRate() <= 5 && review.getRate() >0){
+                if(verifyClonedReview(review)){ // Check if the exact same review is already in the list
+                    success = false;
+                } else {
+                    restaurantRepository.addReview(review);
+                    success = true;// Check if the rating is correct
+                }
             }else{
                 throw new IllegalArgumentException("Rating must be between 1 and 5"); // Throw an exception if the rating is outside range
             }
         }
+
         return success;
+    }
+
+    /**
+     * Verify if the review is already in the list of reviews to avoid spam review from an user
+     * @param review The review to be verified
+     * @return true if the review is already in the list, false otherwise
+     */
+    private boolean verifyClonedReview(Review review) {
+        List<Review> reviews = restaurantRepository.getReviews().getValue();
+        for (Review r : reviews) {
+            if (r.getUsername().equals(review.getUsername()) && r.getComment().equals(review.getComment()) && r.getRate() == review.getRate()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

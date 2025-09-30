@@ -1,5 +1,7 @@
 package com.openclassrooms.tajmahal;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+
 import com.openclassrooms.tajmahal.data.repository.RestaurantRepository;
 import com.openclassrooms.tajmahal.data.service.RestaurantApi;
 import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
@@ -7,6 +9,7 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 import com.openclassrooms.tajmahal.ui.restaurant.NewReviewViewModel;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -14,6 +17,10 @@ import org.junit.Test;
  */
 
 public class ReviewUnitTest {
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule(); // Allow testing even if code include liveData
+
     private RestaurantApi fakeApi;
     RestaurantRepository repository;
     NewReviewViewModel viewModel;
@@ -88,5 +95,26 @@ public class ReviewUnitTest {
 
         assert(fakeApi.getReviews().size() == listReviewSize);
     }
+
+    /**
+     * Test of the addNewReview() method of the ViewModel to verify that it doesn't accept spam review.
+     *
+     * Scenario tested:
+     * - Add the exact same review twice in the list of reviews
+     * - The list of reviews should only increase once
+     */
+    @Test
+    public void testCloneSpamReview(){
+        Review spamReview = new Review("Manon Garcia", "URLProfilePicture","nul", 1);
+
+        int listReviewSize = fakeApi.getReviews().size();
+
+        viewModel.addNewReview(spamReview);
+        viewModel.addNewReview(spamReview);
+
+        assert(fakeApi.getReviews().size() == listReviewSize + 1);
+    }
+
+
 
 }
