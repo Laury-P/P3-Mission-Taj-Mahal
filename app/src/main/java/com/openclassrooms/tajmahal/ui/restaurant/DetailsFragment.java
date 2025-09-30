@@ -151,29 +151,15 @@ public class DetailsFragment extends Fragment {
     private void updateUIWithReview(RestaurantRating rating){
         if (rating == null) return;
 
-
         binding.tvRestaurantNote.setText(String.format(Locale.US, "%.1f", rating.getAverageRating()));
-
         binding.restaurantStarRating.setRating(rating.getAverageRating());
-        Log.d("rating", String.valueOf(rating.getAverageRating()));
-
         binding.tvRestaurantNbrAvis.setText(String.format("(%s)", rating.getNumberOfReviews()));
-        Log.d("rating", String.valueOf(rating.getNumberOfReviews()));
-
         binding.restaurant5StarBar.setProgress(rating.getRatingDetails().get(5));
-        Log.d("rating", String.valueOf(rating.getRatingDetails().get(5)));
-
         binding.restaurant4StarBar.setProgress(rating.getRatingDetails().get(4));
-        Log.d("rating", String.valueOf(rating.getRatingDetails().get(4)));
-
         binding.restaurant3StarBar.setProgress(rating.getRatingDetails().get(3));
-        Log.d("rating", String.valueOf(rating.getRatingDetails().get(3)));
-
         binding.restaurant2StarBar.setProgress(rating.getRatingDetails().get(2));
-        Log.d("rating", String.valueOf(rating.getRatingDetails().get(2)));
-
         binding.restaurant1StarBar.setProgress(rating.getRatingDetails().get(1));
-        Log.d("rating", String.valueOf(rating.getRatingDetails().get(1)));
+
 
     }
 
