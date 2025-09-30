@@ -27,7 +27,7 @@
                 android:id="@+id/buttonBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="Go back to the restaurant details"
+                android:contentDescription="@string/back_to_details"
                 android:focusable="true"
                 android:src="@drawable/baseline_arrow_backward_16"
                 />
@@ -40,13 +40,12 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/jakarta_bold"
                 android:layout_marginStart="15dp"
-
                 />
 
     </LinearLayout>
 
         <ImageView
-            android:id="@+id/userProfilPicture"
+            android:id="@+id/userProfilePicture"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Manon Garcia"
-            app:layout_constraintStart_toEndOf="@id/userProfilPicture"
-            app:layout_constraintTop_toTopOf="@id/userProfilPicture"
+            app:layout_constraintStart_toEndOf="@id/userProfilePicture"
+            app:layout_constraintTop_toTopOf="@id/userProfilePicture"
             android:textSize="12sp"
             android:layout_marginStart="10dp"
             />
@@ -72,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/ratingBarStyleSmall"
-            app:layout_constraintBottom_toBottomOf="@id/userProfilPicture"
-            app:layout_constraintStart_toEndOf="@id/userProfilPicture"
+            app:layout_constraintBottom_toBottomOf="@id/userProfilePicture"
+            app:layout_constraintStart_toEndOf="@id/userProfilePicture"
             android:isIndicator="false"
             android:layout_marginStart="10dp"
             android:rating="5"
@@ -110,7 +109,7 @@
             android:layout_height="wrap_content"
             android:minHeight="50dp"
             android:background="@drawable/edittext_background"
-            app:layout_constraintTop_toBottomOf="@id/userProfilPicture"
+            app:layout_constraintTop_toBottomOf="@id/userProfilePicture"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
@@ -119,7 +118,7 @@
             android:inputType="textMultiLine"
             android:lines="2"
             android:maxLength="300"
-            android:hint="Partagez ici les détails de votre expérience"
+            android:hint="@string/hint_comment"
             android:padding="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView

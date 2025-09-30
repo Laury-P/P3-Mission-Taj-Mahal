@@ -26,10 +26,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/profilPicture"
+            android:id="@+id/profilePicture"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Profil picture"
+            android:contentDescription="Profile picture"
             app:layout_constraintStart_toStartOf="@id/separator"
             app:layout_constraintTop_toBottomOf="@id/separator"
             android:layout_marginTop="15dp"
@@ -40,8 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Ranjit Singh"
-            app:layout_constraintStart_toEndOf="@id/profilPicture"
-            app:layout_constraintTop_toTopOf="@id/profilPicture"
+            app:layout_constraintStart_toEndOf="@id/profilePicture"
+            app:layout_constraintTop_toTopOf="@id/profilePicture"
             android:textSize="12sp"
             android:layout_marginStart="10dp" />
 
@@ -50,8 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layout_constraintBottom_toBottomOf="@id/profilPicture"
-            app:layout_constraintStart_toEndOf="@id/profilPicture"
+            app:layout_constraintBottom_toBottomOf="@id/profilePicture"
+            app:layout_constraintStart_toEndOf="@id/profilePicture"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:isIndicator="true"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            app:layout_constraintTop_toBottomOf="@id/profilPicture"
+            app:layout_constraintTop_toBottomOf="@id/profilePicture"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/jakarta_regular"

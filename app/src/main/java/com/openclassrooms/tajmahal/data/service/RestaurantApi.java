@@ -1,6 +1,5 @@
 package com.openclassrooms.tajmahal.data.service;
 
-import androidx.lifecycle.LiveData;
 
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
@@ -64,5 +63,10 @@ public interface RestaurantApi {
      */
     User getUser();
 
+    /**
+     * Adds a review to the list of review of the restaurant.
+     *
+     * @param review The {@link Review} object containing all the details of the review.
+     */
     void addReview(Review review);
 }

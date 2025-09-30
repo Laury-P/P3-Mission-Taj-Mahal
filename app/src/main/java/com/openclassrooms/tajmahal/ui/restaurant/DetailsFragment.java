@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.RestaurantRating;
+
+import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -68,7 +71,7 @@ public class DetailsFragment extends Fragment {
         detailsViewModel.getTajMahalRestaurant().observe(requireActivity(), this::updateUIWithRestaurant); // Observes changes in the restaurant data and updates the UI accordingly.
         detailsViewModel.getTajMahalRating().observe(requireActivity(), this::updateUIWithReview); // Observes changes in the restaurant reviews and updates the UI accordingly.
         detailsViewModel.updateRestaurantRating(); // Updates the restaurant rating data.
-        binding.buttonLeaveReview.setOnClickListener(new View.OnClickListener(){
+        binding.buttonLeaveReview.setOnClickListener(new View.OnClickListener(){ //Navigate to the fragment to leave a review and see previous review
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -140,16 +143,37 @@ public class DetailsFragment extends Fragment {
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
     }
 
+    /**
+     * Updates the UI components with the provided restaurant rating data.
+     *
+     * @param rating The restaurant rating object containing details to be displayed.
+     */
     private void updateUIWithReview(RestaurantRating rating){
         if (rating == null) return;
-        binding.tvRestaurantNote.setText(String.valueOf(rating.getAverageRating()));
+
+
+        binding.tvRestaurantNote.setText(String.format(Locale.US, "%.1f", rating.getAverageRating()));
+
         binding.restaurantStarRating.setRating(rating.getAverageRating());
+        Log.d("rating", String.valueOf(rating.getAverageRating()));
+
         binding.tvRestaurantNbrAvis.setText(String.format("(%s)", rating.getNumberOfReviews()));
-        binding.restaurantAvis5starBar.setProgress(rating.getRatingDetails().get(5));
-        binding.restaurantAvis4starBar.setProgress(rating.getRatingDetails().get(4));
-        binding.restaurantAvis3starBar.setProgress(rating.getRatingDetails().get(3));
-        binding.restaurantAvis2starBar.setProgress(rating.getRatingDetails().get(2));
-        binding.restaurantAvis1starBar.setProgress(rating.getRatingDetails().get(1));
+        Log.d("rating", String.valueOf(rating.getNumberOfReviews()));
+
+        binding.restaurant5StarBar.setProgress(rating.getRatingDetails().get(5));
+        Log.d("rating", String.valueOf(rating.getRatingDetails().get(5)));
+
+        binding.restaurant4StarBar.setProgress(rating.getRatingDetails().get(4));
+        Log.d("rating", String.valueOf(rating.getRatingDetails().get(4)));
+
+        binding.restaurant3StarBar.setProgress(rating.getRatingDetails().get(3));
+        Log.d("rating", String.valueOf(rating.getRatingDetails().get(3)));
+
+        binding.restaurant2StarBar.setProgress(rating.getRatingDetails().get(2));
+        Log.d("rating", String.valueOf(rating.getRatingDetails().get(2)));
+
+        binding.restaurant1StarBar.setProgress(rating.getRatingDetails().get(1));
+        Log.d("rating", String.valueOf(rating.getRatingDetails().get(1)));
 
     }
 

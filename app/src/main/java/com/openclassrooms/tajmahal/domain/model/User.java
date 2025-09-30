@@ -28,56 +28,26 @@ public class User {
         this.id = id;
     }
 
-    /**
-     * Returns the name of the user.
-     *
-     * @return a string for the name of the user
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets or updates the name of the user.
-     *
-     * @param name the new name to be set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Returns the profil picture of the user.
-     *
-     * @return a string for the url of the profil picture of the user
-     */
     public String getProfilPicture() {
         return profilPicture;
     }
 
-    /**
-     * Sets or updates the profil picture of the user.
-     *
-     * @param profilPicture the new profil picture to be set
-     */
     public void setProfilPicture(String profilPicture) {
         this.profilPicture = profilPicture;
     }
 
-    /**
-     * Returns the id of the user.
-     *
-     * @return a string for the id of the user
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * Sets or updates the id of the user.
-     *
-     * @param id the new id to be set
-     */
     public void setId(String id) {
         this.id = id;
     }

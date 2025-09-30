@@ -70,7 +70,7 @@ public class DetailsViewModel extends ViewModel {
      */
     public void updateRestaurantRating() {
         restaurantRepository.getReviews().observeForever(reviews -> {
-            if (reviews != null && !reviews.isEmpty()) {
+            if (reviews != null && !reviews.isEmpty()) { // Check if there are reviews
                 int sumRating = 0;
                 int numberOfReviews = reviews.size();
                 Map<Integer, Integer> ratingDetails = new HashMap<>();
@@ -80,15 +80,16 @@ public class DetailsViewModel extends ViewModel {
                     ratingDetails.put(i, 0);
                 }
 
+                // calcul de la note moyenne
                 for (Review review : reviews) {
                     int rate = review.getRate();
                     sumRating += rate;
                     ratingDetails.put(rate, ratingDetails.get(rate) + 1);
                 }
 
-                float averageRating = sumRating / numberOfReviews;
+                float averageRating = (float) sumRating / numberOfReviews;
 
-                // Calcul des pourcentages des notes par catégories
+                // calcul des pourcentages des notes par catégories
                 for (int i = 1; i <= 5; i++) {
                     ratingDetails.put(i, ratingDetails.get(i) * 100 / numberOfReviews);
                 }

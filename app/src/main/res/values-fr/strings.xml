@@ -25,7 +25,8 @@
     <string name="button_back">Retour</string>
     <string name="button_submit">Valider</string>
     <string name="error_empty_comment">Veuillez entrer un commentaire</string>
-
+    <string name="back_to_details">Retour au détails du restaurant</string>
+    <string name="hint_comment">Partagez ici les détails de votre expérience</string>
 
 
 </resources>

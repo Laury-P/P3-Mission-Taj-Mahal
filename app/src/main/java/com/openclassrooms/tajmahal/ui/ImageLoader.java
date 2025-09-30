@@ -6,17 +6,18 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 /**
- * Class that prepare the profil picture of the users for the view
+ * Class that prepare images for the view
  */
 public class ImageLoader {
 
     /**
-     * Methode that prepare the profil picture of the users for the view
+     * Methode that prepare the profile picture of the users for the view.
+     *
      * @param context
      * @param url
      * @param imageView
      */
-    public static void loadProfilPicture(Context context, String url, ImageView imageView) {
+    public static void loadProfilePicture(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
                 .circleCrop()

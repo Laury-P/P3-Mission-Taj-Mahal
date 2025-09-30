@@ -83,9 +83,10 @@ public class RestaurantFakeApi implements RestaurantApi {
     }
 
     /**
-     * Adds a new review to the list of reviews.
+     * Adds a new review to the beginning of the list of reviews
+     * in order to have the latest review on top.
      *
-     * @param review
+     * @param  review The review to be added.
      */
     @Override
     public void addReview(Review review){

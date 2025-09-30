@@ -81,6 +81,11 @@ public class RestaurantRepository {
     }
 
 
+    /**
+     * Adds a review to the restaurant API.
+     *
+     * @param review The review to be added.
+     */
     public void addReview(Review review) {
         restaurantApi.addReview(review);
     }

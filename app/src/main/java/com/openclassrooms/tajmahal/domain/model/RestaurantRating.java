@@ -33,56 +33,32 @@ public class RestaurantRating {
         this.ratingDetails = ratingDetails;
     }
 
-    /**
-     * Returns the average rating of the restaurant.
-     *
-     * @return a float representing the average rating
-     */
+
     public float getAverageRating() {
         return averageRating;
     }
 
-    /**
-     * Sets or updates the average rating of the restaurant.
-     *
-     * @param averageRating the new average rating to be set
-     */
+
     public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
     }
 
-    /**
-     * Returns the total number of reviews for the restaurant.
-     *
-     * @return an integer representing the number of reviews
-     */
+
     public int getNumberOfReviews() {
         return numberOfReviews;
     }
 
-    /**
-     * Sets or updates the total number of reviews for the restaurant.
-     *
-     * @param numberOfReviews the new number of reviews to be set
-     */
+
     public void setNumberOfReviews(int numberOfReviews) {
         this.numberOfReviews = numberOfReviews;
     }
 
-    /**
-     * Returns a map containing the number of reviews per rating.
-     *
-     * @return a map containing the number of reviews per rating
-     */
+
     public Map<Integer, Integer> getRatingDetails() {
         return ratingDetails;
     }
 
-    /**
-     * Sets or updates the map containing the number of reviews per rating.
-     *
-     * @param ratingDetails a map containing the new number of reviews per rating
-     */
+
     public void setRatingDetails(Map<Integer, Integer> ratingDetails) {
         this.ratingDetails = ratingDetails;
     }

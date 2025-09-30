@@ -33,8 +33,6 @@ public class NewReviewViewModel extends ViewModel {
 
     private final RestaurantRepository restaurantRepository;
 
-
-
     /**
      * Constructor that Hilt will use to create an instance of NewReviewViewModel
      *
@@ -71,19 +69,21 @@ public class NewReviewViewModel extends ViewModel {
     }
 
     /**
-     * Adds a new review to the restaurantRepository.
-     * @param review
+     * Verify the new review and add it to the restaurantRepository if correct
+     * and send a feed back to the view.
+     *
+     * @param review The review to be added
      */
     public boolean addNewReview(Review review){
         boolean success;
-        if (review.getComment().isEmpty()) {
+        if (review.getComment().isEmpty()) { // Check if the comment is empty
             success = false;
         } else {
-            if (review.getRate() <= 5 && review.getRate() >0){
+            if (review.getRate() <= 5 && review.getRate() >0){ // Check if the rating is correct
                 restaurantRepository.addReview(review);
                 success = true;
             }else{
-                throw new IllegalArgumentException("Rating must be between 1 and 5");
+                throw new IllegalArgumentException("Rating must be between 1 and 5"); // Throw an exception if the rating is outside range
             }
         }
         return success;

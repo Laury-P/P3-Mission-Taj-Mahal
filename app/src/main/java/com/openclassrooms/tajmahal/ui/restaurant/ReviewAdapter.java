@@ -3,7 +3,7 @@ package com.openclassrooms.tajmahal.ui.restaurant;
 
 
 
-import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilPicture;
+import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilePicture;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,18 +23,18 @@ import com.openclassrooms.tajmahal.domain.model.Review;
 
 
 /**
- * Adapter for the list of reviews
+ * Adapter for recyclerView that display the list of reviews
  */
-public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewHolder> {
+public class ReviewAdapter extends ListAdapter<Review, ReviewAdapter.ViewHolder> {
 
 
     /**
      * Constructor
      */
-    public ReviewAdaptateur() { super(new ItemCallBack());}
+    public ReviewAdapter() { super(new ItemCallBack());}
 
     /**
-     * Crée une nouvelle vue pour chaque élément de la liste si nécessaire
+     * Create a new ViewHolder
      *
      * @param parent The ViewGroup into which the new View will be added after it is bound to
      *               an adapter position.
@@ -71,13 +71,13 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
         private final RatingBar rate;
 
         /**
-         * Constructor
+         * Constructor that linked the data to the correspondent component of the view
          *
          * @param itemView The view of the item
          */
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            profilPicture = itemView.findViewById(R.id.profilPicture);
+            profilPicture = itemView.findViewById(R.id.profilePicture);
             name = itemView.findViewById(R.id.tvName);
             comment = itemView.findViewById(R.id.tvComment);
             rate = itemView.findViewById(R.id.Rating);
@@ -89,7 +89,7 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
          * @param review The review to bind
          */
         public void bind(Review review){
-            loadProfilPicture(itemView.getContext(), review.getPicture(), profilPicture);
+            loadProfilePicture(itemView.getContext(), review.getPicture(), profilPicture);
             name.setText(review.getUsername());
             comment.setText(review.getComment());
             rate.setRating(review.getRate());
@@ -97,12 +97,12 @@ public class ReviewAdaptateur extends ListAdapter<Review, ReviewAdaptateur.ViewH
     }
 
     /**
-     * DiffCallback for the list of reviews
+     * DiffCallback for the list of reviews that make sure to not display the same review twice
      */
     private static class ItemCallBack extends DiffUtil.ItemCallback<Review>{
         @Override
         public boolean areItemsTheSame(@NonNull Review oldItem, @NonNull Review newItem) {
-            return oldItem.getUsername().equals(newItem.getUsername());//&& oldItem.getPicture().equals(newItem.getPicture());
+            return oldItem.getUsername().equals(newItem.getUsername()) && oldItem.getPicture().equals(newItem.getPicture());
         }
 
         @Override

@@ -1,6 +1,6 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
-import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilPicture;
+import static com.openclassrooms.tajmahal.ui.ImageLoader.loadProfilePicture;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,14 +23,13 @@ import com.openclassrooms.tajmahal.databinding.FragmentNewReviewBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
 import com.openclassrooms.tajmahal.domain.model.User;
 
-import java.util.List;
-
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * NewReviewFragment is te view where client can leave review and see
+ * NewReviewFragment is the view where client can leave review and see
  * other clients review.
+ *
  * This class uses {@link NewReviewViewModel} to interact with data sources and manage UI-related data
  * and {@link FragmentNewReviewBinding} for data binding to its layout.
  */
@@ -39,7 +38,7 @@ public class NewReviewFragment extends Fragment {
 
     private NewReviewViewModel newReviewViewModel;
     private FragmentNewReviewBinding binding;
-    private ReviewAdaptateur reviewAdapter;
+    private ReviewAdapter reviewAdapter;
 
 
 
@@ -91,7 +90,7 @@ public class NewReviewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 submitReview();
-            }
+            } // Submits the new review when the button is clicked.
         });
         binding.topBand.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,24 +101,25 @@ public class NewReviewFragment extends Fragment {
     }
 
     /**
-     * This methode fetch the necessary information to create a new review
-     * and update the UI with the new list of reviews.
+     * This methode fetch the necessary information to create a new review, send them to the viewmodel to be verified
+     * and saved in the database.
+     * It update the UI with the new list of reviews if the review is deemed correct.
      *
      */
     private void submitReview() {
-        String name = newReviewViewModel.getUser().getName();
-        String profilPicture = newReviewViewModel.getUser().getProfilPicture();
-        String comment = binding.userComment.getText().toString().trim();//trim pour supprimer les espaces inutiles et eviter un commentaire " "
-        int rating = (int) binding.userRating.getRating();
-        Review review = new Review(name, profilPicture, comment, rating);
+        String name = newReviewViewModel.getUser().getName(); // Get the name of the user leaving the review.
+        String profilPicture = newReviewViewModel.getUser().getProfilPicture(); // Get the profil picture of the user leaving the review.
+        String comment = binding.userComment.getText().toString().trim();// The comment is trimed to assured that a comment with a " " isn't considered valid
+        int rating = (int) binding.userRating.getRating(); // Get the rating of the user leaving the review.
+        Review review = new Review(name, profilPicture, comment, rating); // Create a review holding all the information provided by the user
 
 
-        if(newReviewViewModel.addNewReview(review)){
-            binding.userComment.setText("");
-            binding.userRating.setRating(5);
-            reviewAdapter.notifyDataSetChanged();
-        } else if (review.getComment().isEmpty()) {
-            binding.userComment.setError(getString(R.string.error_empty_comment));
+        if(newReviewViewModel.addNewReview(review)){ // Send the review to the viewmodel to be verified and saved in the database
+            binding.userComment.setText(""); // Clear the comment field
+            binding.userRating.setRating(5);  // Reset the rating field
+            reviewAdapter.notifyDataSetChanged(); // Notify the recycler view that the data has changed
+        } else if (review.getComment().isEmpty()) { // Verify if the validation as failed because of an empty comment
+            binding.userComment.setError(getString(R.string.error_empty_comment)); // Set an error message for the empty comment field
         }
 
     }
@@ -142,9 +142,9 @@ public class NewReviewFragment extends Fragment {
     private void setupViewModel() {
         newReviewViewModel = new ViewModelProvider(this).get(NewReviewViewModel.class);
         newReviewViewModel.getRestaurantName().observe(getViewLifecycleOwner(), restaurantName -> {
-            binding.tvRestaurantName.setText(restaurantName);
+            binding.tvRestaurantName.setText(restaurantName); // Update the restaurant name in the UI.
         });
-        setupUserProfil();
+        setupUserProfil(); // Sets up the user's profile picture and name in the UI.
     }
 
     /**
@@ -153,14 +153,14 @@ public class NewReviewFragment extends Fragment {
     private void setupUserProfil(){
         User user = newReviewViewModel.getUser();
         binding.tvUserName.setText(user.getName());
-        loadProfilPicture(requireContext(),user.getProfilPicture(),binding.userProfilPicture);
+        loadProfilePicture(requireContext(),user.getProfilPicture(),binding.userProfilePicture);
     }
 
     /**
      * Sets up the RecyclerView for displaying reviews.
      */
     private void setupRecyclerView() {
-        reviewAdapter = new ReviewAdaptateur();
+        reviewAdapter = new ReviewAdapter();
         binding.recyclerViewReview.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewReview.setAdapter(reviewAdapter);
         newReviewViewModel.getReviews().observe(getViewLifecycleOwner(), reviews -> {

@@ -25,6 +25,8 @@
     <string name="button_back">Back</string>
     <string name="button_submit">Submit</string>"
     <string name="error_empty_comment">Please enter a comment.</string>
+    <string name="back_to_details">Go back to the restaurant details</string>
+    <string name="hint_comment">Enter the details of your experience</string>
 
 
 </resources>
